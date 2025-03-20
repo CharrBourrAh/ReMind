@@ -9,7 +9,6 @@ public abstract class Element {
         this.date = date;
     }
 
-public class Element {
     public String getName() {
         return name;
     }
