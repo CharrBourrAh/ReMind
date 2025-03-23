@@ -44,6 +44,13 @@ public class MainPage extends JFrame {
         elements.add(new TextElement(2, "jsp", calendar, "qjdzoidjqodjqoizoqidjqoidjqoijdoidjqzojdqzoijdqz"));
         // end
         this.displayElements(elements, frame);
+        displayElements(elements, mainPagePanel);
+
+        ElementPage elementPage = new ElementPage(this);
+        JPanel elementPagePanel = elementPage.getPanel();
+
+        mainPanel.add(mainPagePanel, "mainPage");
+        mainPanel.add(elementPagePanel, "elementPage");
 
         cardLayout.show(mainPanel, "mainPanel");
 
