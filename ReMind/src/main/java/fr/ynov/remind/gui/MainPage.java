@@ -10,15 +10,25 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class MainPage {
-    public void mainPage() {
-        JFrame frame = new JFrame("ReMind");
-        frame.setSize(800, 600);
-        frame.setMaximumSize(new Dimension(800, 600));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class MainPage extends JFrame {
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
 
-        frame.setLayout(new BorderLayout());
-        frame.add(new JButton("Add"), BorderLayout.NORTH);
+    public void mainPage() {
+        setTitle("ReMind");
+        setSize(800, 600);
+        setMaximumSize(new Dimension(800, 600));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        cardLayout = new CardLayout();
+        mainPanel = new JPanel(cardLayout);
+
+        JPanel mainPagePanel = new JPanel(new BorderLayout());
+
+        JButton addButton = new JButton("Add");
+        addButton.addActionListener(_ -> cardLayout.show(mainPanel, "elementPage"));
+        mainPagePanel.add(addButton, BorderLayout.NORTH);
+
 
         // test list
         Calendar calendar = Calendar.getInstance();
@@ -35,18 +45,30 @@ public class MainPage {
         // end
         this.displayElements(elements, frame);
 
-        frame.setVisible(true);
+        cardLayout.show(mainPanel, "mainPanel");
+
+        add(mainPanel);
+        setVisible(true);
     }
 
-    private void displayElements(List<Element> list, JFrame frame) {
+    private void displayElements(List<Element> list, JPanel panel) {
         JPanel elementsPanel = new JPanel();
         elementsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
         for (Element element : list) {
             JPanel elementPanel = element.display();
+            elementsPanel.setMinimumSize(new Dimension(Integer.MAX_VALUE, elementPanel.getPreferredSize().height));
+            elementsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
             elementsPanel.add(elementPanel);
             elementsPanel.add(Box.createVerticalStrut(10));
         }
-        frame.add(new JScrollPane(elementsPanel), BorderLayout.CENTER);
+        elementsPanel.add(Box.createVerticalGlue());
+
+        panel.add(new JScrollPane(elementsPanel), BorderLayout.CENTER);
+    }
+
+    public void showMainPage() {
+        cardLayout.show(mainPanel, "mainPage");
     }
 }
