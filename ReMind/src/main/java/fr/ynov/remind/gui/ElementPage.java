@@ -1,7 +1,11 @@
 package main.java.fr.ynov.remind.gui;
 
+import main.java.fr.ynov.remind.domain.TextElement;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ElementPage {
     private final JPanel panel;
@@ -66,9 +70,8 @@ public class ElementPage {
         JScrollPane scrollPane = new JScrollPane(contentArea);
         formPanel.add(scrollPane, gbc);
 
-        JPanel buttonPanel = getJPanel(mainPage, titleField);
+        JPanel buttonPanel = getJPanel(mainPage, titleField, contentArea, panel);
 
-        // Assemblage
         panel.add(headerPanel, BorderLayout.NORTH);
         panel.add(formPanel, BorderLayout.CENTER);
         panel.add(buttonPanel, BorderLayout.SOUTH);
