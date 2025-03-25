@@ -7,13 +7,13 @@ import java.util.Calendar;
 public class TextElement extends Element {
     String description;
 
-    public TextElement(int id, String name, Calendar date, String description) {
-        super(id, name, date);
+    public TextElement(String name, Calendar date, String description) {
+        super(name, date);
         this.description = description;
     }
 
     @Override
-    public JPanel display() {
+    public JPanel display(ElementsFactory factory) {
         Calendar localDate = Calendar.getInstance();
 
         JPanel panel = new JPanel();
