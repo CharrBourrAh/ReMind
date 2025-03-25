@@ -1,10 +1,11 @@
 package main.java.fr.ynov.remind.domain;
 
+import main.java.fr.ynov.remind.factory.ElementsFactory;
+
 import javax.swing.*;
 import java.util.Calendar;
 public abstract class Element {
-    protected Element(int id, String name, Calendar date) {
-        this.id = id;
+    protected Element(String name, Calendar date) {
         this.name = name;
         this.date = date;
     }
@@ -25,9 +26,8 @@ public abstract class Element {
         this.date = date;
     }
 
-    private final int id;
     protected String name;
     protected Calendar date;
-    // put tags list
-    public abstract JPanel display();
+    protected Tags tag;
+    public abstract JPanel display(ElementsFactory factory);
 }
