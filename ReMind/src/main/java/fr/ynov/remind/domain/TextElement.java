@@ -1,5 +1,7 @@
 package main.java.fr.ynov.remind.domain;
 
+import main.java.fr.ynov.remind.factory.ElementsFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Calendar;
@@ -57,12 +59,26 @@ public class TextElement extends Element {
         JPanel modificationPanel = new JPanel();
         modificationPanel.setLayout(new BoxLayout(modificationPanel, BoxLayout.X_AXIS));
         modificationPanel.add(new JButton("Edit"), BorderLayout.SOUTH);
-        modificationPanel.add(new JButton("Delete"), BorderLayout.SOUTH);
+        JButton deleteButton = getJButton(factory);
+        modificationPanel.add(deleteButton, BorderLayout.SOUTH);
         panel.add(modificationPanel, BorderLayout.SOUTH);
 
         panel.setAlignmentX(Component.LEFT_ALIGNMENT);
         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, panel.getPreferredSize().height));
 
         return panel;
+    }
+
+    private JButton getJButton(ElementsFactory factory) {
+        JButton deleteButton = new JButton("Delete");
+        deleteButton.addActionListener(_ -> {
+            int test = JOptionPane.showOptionDialog(null, "Are you sure to delete this note ?", "Confirming Deleting a Reminder", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, new String[]{"Yes", "No"}, 0);
+            if (test == JOptionPane.YES_OPTION) {
+                factory.removeElement(this);
+                System.out.println(factory.getAllElements());
+                
+            }
+        });
+        return deleteButton;
     }
 }
