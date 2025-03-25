@@ -74,11 +74,14 @@ public class ElementPage {
         panel.add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    private JPanel getJPanel(MainPage mainPage, JTextField titleField) {
+    private JPanel getJPanel(MainPage mainPage, JTextField titleField, JTextArea contentArea, JPanel parentPanel) {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
         JButton cancelButton = new JButton("Cancel");
-        cancelButton.addActionListener(_ -> mainPage.showMainPage());
+        cancelButton.addActionListener(_ -> {
+            parentPanel.setVisible(false);
+            mainPage.showMainPage();
+        });
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(_ -> {
@@ -87,6 +90,7 @@ public class ElementPage {
                     "Information",
                     JOptionPane.INFORMATION_MESSAGE);
 
+            parentPanel.setVisible(false);
             mainPage.showMainPage();
         });
 
