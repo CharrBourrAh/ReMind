@@ -12,16 +12,15 @@ public class ElementsFactory {
     private final TreeMap<Integer, Element> allElements = new TreeMap<Integer, Element>();
 
 
-
-    public void addElement(Element element) {
-        allElements.add(element);
+    public void addElement(int size, Element element) {
+        allElements.put(allElements.size(), element);
     }
 
     public void removeElement(Element element) {
-        allElements.remove(element);
+        allElements.values().remove(element);
     }
 
-    public void updateElement(int id) {
-
+    public void updateElement(Integer id, Element element) {
+        allElements.replace(id, element);
     }
 }
