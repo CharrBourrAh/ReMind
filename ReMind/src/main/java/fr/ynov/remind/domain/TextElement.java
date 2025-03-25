@@ -1,6 +1,7 @@
 package main.java.fr.ynov.remind.domain;
 
 import main.java.fr.ynov.remind.factory.ElementsFactory;
+import main.java.fr.ynov.remind.gui.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class TextElement extends Element {
     }
 
     @Override
-    public JPanel display(ElementsFactory factory) {
+    public JPanel display(ElementsFactory factory, MainPage mainPage) {
         Calendar localDate = Calendar.getInstance();
 
         JPanel panel = new JPanel();
