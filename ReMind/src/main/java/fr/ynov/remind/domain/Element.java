@@ -1,6 +1,7 @@
 package main.java.fr.ynov.remind.domain;
 
 import main.java.fr.ynov.remind.factory.ElementsFactory;
+import main.java.fr.ynov.remind.gui.MainPage;
 
 import javax.swing.*;
 import java.util.Calendar;
@@ -29,5 +30,5 @@ public abstract class Element {
     protected String name;
     protected Calendar date;
     protected Tags tag;
-    public abstract JPanel display(ElementsFactory factory);
+    public abstract JPanel display(ElementsFactory factory, MainPage mainPage);
 }
