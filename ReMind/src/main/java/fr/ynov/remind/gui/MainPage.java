@@ -1,20 +1,20 @@
 package main.java.fr.ynov.remind.gui;
 
 import main.java.fr.ynov.remind.domain.Element;
-import main.java.fr.ynov.remind.domain.TextElement;
+import main.java.fr.ynov.remind.factory.ElementsFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class MainPage extends JFrame {
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    protected ElementsFactory elementsFactory;
+    private JPanel mainPagePanel;
+    private JScrollPane reminderScrollPanel = new JScrollPane();
 
-    public void mainPage() {
+    public void mainPage(ElementsFactory elementsFactory) {
+        this.elementsFactory = elementsFactory;
         setTitle("ReMind");
         setSize(800, 600);
         setMaximumSize(new Dimension(800, 600));
@@ -23,7 +23,7 @@ public class MainPage extends JFrame {
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        JPanel mainPagePanel = new JPanel(new BorderLayout());
+        mainPagePanel = new JPanel(new BorderLayout());
 
         JButton addButton = new JButton("Add");
         addButton.addActionListener(_ -> cardLayout.show(mainPanel, "elementPage"));
@@ -71,11 +71,15 @@ public class MainPage extends JFrame {
             elementsPanel.add(Box.createVerticalStrut(10));
         }
         elementsPanel.add(Box.createVerticalGlue());
-
-        panel.add(new JScrollPane(elementsPanel), BorderLayout.CENTER);
+        reminderScrollPanel = new JScrollPane(elementsPanel);
+        panel.add(reminderScrollPanel, BorderLayout.CENTER);
     }
 
     public void showMainPage() {
+        mainPagePanel.remove(reminderScrollPanel);
+        displayElements(elementsFactory, mainPagePanel);
         cardLayout.show(mainPanel, "mainPage");
+        mainPagePanel.revalidate();
+        mainPagePanel.repaint();
     }
 }
