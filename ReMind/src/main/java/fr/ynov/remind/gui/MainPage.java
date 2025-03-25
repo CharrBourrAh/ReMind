@@ -26,7 +26,10 @@ public class MainPage extends JFrame {
         mainPagePanel = new JPanel(new BorderLayout());
 
         JButton addButton = new JButton("Add");
-        addButton.addActionListener(_ -> cardLayout.show(mainPanel, "elementPage"));
+        addButton.addActionListener(_ -> {
+            mainPagePanel.setVisible(false);
+            cardLayout.show(mainPanel, "elementPage");
+        });
         mainPagePanel.add(addButton, BorderLayout.NORTH);
 
 
@@ -52,10 +55,11 @@ public class MainPage extends JFrame {
         mainPanel.add(mainPagePanel, "mainPage");
         mainPanel.add(elementPagePanel, "elementPage");
 
-        cardLayout.show(mainPanel, "mainPanel");
+        cardLayout.show(mainPanel, "mainPage");
 
         add(mainPanel);
         setVisible(true);
+        mainPagePanel.setVisible(true);
     }
 
     private void displayElements(List<Element> list, JPanel panel) {
