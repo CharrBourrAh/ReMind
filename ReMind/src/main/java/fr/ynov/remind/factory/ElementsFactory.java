@@ -2,18 +2,15 @@ package main.java.fr.ynov.remind.factory;
 
 import main.java.fr.ynov.remind.domain.Element;
 
-import java.util.List;
+import java.util.TreeMap;
 
 public class ElementsFactory {
-    public List<Element> getAllElements() {
+    public TreeMap<Integer, Element> getAllElements() {
         return allElements;
     }
 
-    public void setAllElements(List<Element> allElements) {
-        this.allElements = allElements;
-    }
+    private final TreeMap<Integer, Element> allElements = new TreeMap<Integer, Element>();
 
-    private List<Element> allElements;
 
 
     public void addElement(Element element) {
