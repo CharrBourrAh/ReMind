@@ -68,7 +68,7 @@ public class MainPage extends JFrame {
         elementsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
         for (Element element : factory.getAllElements().values()) {
-            JPanel elementPanel = element.display(factory);
+            JPanel elementPanel = element.display(factory, this);
             elementsPanel.setMinimumSize(new Dimension(Integer.MAX_VALUE, elementPanel.getPreferredSize().height));
             elementsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
