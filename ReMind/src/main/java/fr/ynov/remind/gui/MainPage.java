@@ -48,6 +48,7 @@ public class MainPage extends JFrame {
         // end
         this.displayElements(elements, frame);
         displayElements(elements, mainPagePanel);
+        displayElements(elementsFactory, mainPagePanel);
 
         ElementPage elementPage = new ElementPage(this);
         JPanel elementPagePanel = elementPage.getPanel();
@@ -62,12 +63,12 @@ public class MainPage extends JFrame {
         mainPagePanel.setVisible(true);
     }
 
-    private void displayElements(List<Element> list, JPanel panel) {
+    private void displayElements(ElementsFactory factory, JPanel panel) {
         JPanel elementsPanel = new JPanel();
         elementsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
-        for (Element element : list) {
-            JPanel elementPanel = element.display();
+        for (Element element : factory.getAllElements().values()) {
+            JPanel elementPanel = element.display(factory);
             elementsPanel.setMinimumSize(new Dimension(Integer.MAX_VALUE, elementPanel.getPreferredSize().height));
             elementsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
