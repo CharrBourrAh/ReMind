@@ -62,7 +62,7 @@ public class TextElement extends Element {
         JPanel modificationPanel = new JPanel();
         modificationPanel.setLayout(new BoxLayout(modificationPanel, BoxLayout.X_AXIS));
         modificationPanel.add(new JButton("Edit"), BorderLayout.SOUTH);
-        JButton deleteButton = getJButton(factory, mainPage);
+        JButton deleteButton = getDeleteJButton(factory, mainPage);
         modificationPanel.add(deleteButton, BorderLayout.SOUTH);
         panel.add(modificationPanel, BorderLayout.SOUTH);
 
@@ -70,18 +70,5 @@ public class TextElement extends Element {
         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, panel.getPreferredSize().height));
 
         return panel;
-    }
-
-    private JButton getJButton(ElementsFactory factory, MainPage mainPage) {
-        JButton deleteButton = new JButton("Delete");
-        deleteButton.addActionListener(_ -> {
-            int test = JOptionPane.showOptionDialog(null, "Are you sure to delete this note ?", "Confirming Deleting a Reminder", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, new String[]{"Yes", "No"}, 0);
-            if (test == JOptionPane.YES_OPTION) {
-                factory.removeElement(this);
-                System.out.println(factory.getAllElements());
-                mainPage.showMainPage();
-            }
-        });
-        return deleteButton;
     }
 }
