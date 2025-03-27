@@ -37,12 +37,12 @@ public class TextElement extends Element {
         // wrap in a function
         JTextArea textArea2 = new JTextArea("Need to be completed before: " +
                 date.get(Calendar.DATE) + "/" +
-                date.get(Calendar.MONTH) + 1 + "/" +
+                date.get(Calendar.MONTH)  + "/" +
                 date.get(Calendar.YEAR) + " at " +
                 date.get(Calendar.HOUR) + ":"+
                 date.get(Calendar.MINUTE) +
                 ". Ends in : " +
-                (date.get(Calendar.DAY_OF_YEAR) - localDate.get(Calendar.DAY_OF_YEAR)) + " days");
+                timeDifference + " days");
         textArea2.setEditable(false);
         textArea2.setWrapStyleWord(true);
         textArea2.setLineWrap(true);
