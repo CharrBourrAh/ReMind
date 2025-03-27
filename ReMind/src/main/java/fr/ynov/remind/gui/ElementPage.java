@@ -12,11 +12,19 @@ public class ElementPage {
 
     public ElementPage(MainPage mainPage) {
         panel = new JPanel(new BorderLayout());
+        JTabbedPane tabbedPane = new JTabbedPane();
 
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(100, 150, 200));
         JLabel titleLabel = new JLabel("Adding / Editing Element");
         headerPanel.add(titleLabel);
+        panel.add(headerPanel, BorderLayout.NORTH);
+
+        tabbedPane.addTab("Text Element", textElementCreationPanel(mainPage));
+        tabbedPane.addTab("Phone Element", phoneElementCreationPanel(mainPage));
+
+        panel.add(tabbedPane, BorderLayout.CENTER);
+    }
 
         JPanel formPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
