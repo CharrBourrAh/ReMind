@@ -10,8 +10,8 @@ import java.util.Calendar;
 public class TextElement extends Element {
     String description;
 
-    public TextElement(String name, Calendar date, String description) {
-        super(name, date);
+    public TextElement(String name, Calendar date, String description, Tags tag) {
+        super(name, date, tag);
         this.description = description;
     }
 
@@ -20,7 +20,7 @@ public class TextElement extends Element {
         Calendar localDate = Calendar.getInstance();
 
         JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createTitledBorder(getName()));
+        panel.setBorder(BorderFactory.createTitledBorder(getName()+" - "+tag.toString()));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
