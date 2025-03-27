@@ -98,8 +98,30 @@ public class ElementPage {
         JTextArea contentArea = new JTextArea(10, 30);
         JScrollPane scrollPane = new JScrollPane(contentArea);
         formPanel.add(scrollPane, gbc);
+        contentList.add(titleField);
+        contentList.add(contentArea);
 
-        JPanel buttonPanel = getJPanel(mainPage, titleField, contentArea, panel);
+        return getjPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
+    }
+
+    private JPanel phoneElementCreationPanel(MainPage mainPage) {
+        JPanel formPanel = new JPanel(new GridBagLayout());
+
+        List<JSpinner> spinnersList = new java.util.ArrayList<>(List.of());
+        List<JTextComponent> contentList = new java.util.ArrayList<>(List.of());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 10, 5, 10);
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        formPanel.add(new JLabel("Title:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        JTextField titleField = new JTextField(20);
+        formPanel.add(titleField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -165,7 +187,7 @@ public class ElementPage {
         return getjPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
     }
 
-    private JPanel getJPanel(MainPage mainPage, JTextField titleField, JTextArea contentArea, JPanel parentPanel) {
+    private JPanel saveCancelButtonsJPanel(MainPage mainPage, JPanel parentPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, Tags tag) {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
         JButton cancelButton = new JButton("Cancel");
@@ -173,11 +195,18 @@ public class ElementPage {
             parentPanel.setVisible(false);
             mainPage.showMainPage();
         });
-
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(_ -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(spinnersList.getFirst().getValue().hashCode(), spinnersList.get(1).getValue().hashCode(), spinnersList.get(2).getValue().hashCode(), spinnersList.get(3).getValue().hashCode(), spinnersList.get(4).getValue().hashCode());
+            if (contentList.size() == 2) {
+                mainPage.elementsFactory.addElement(mainPage.elementsFactory.getAllElements().size(), new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), tag));
+            }
+            if (contentList.size() == 3) {
+                mainPage.elementsFactory.addElement(mainPage.elementsFactory.getAllElements().size(), new PhoneElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), contentList.get(2).getText(), tag));
+            }
             JOptionPane.showMessageDialog(panel,
-                    "Reminder saved: " + titleField.getText(),
+                    "Reminder saved: " + contentList.getFirst().getText(),
                     "Information",
                     JOptionPane.INFORMATION_MESSAGE);
 
