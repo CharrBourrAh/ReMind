@@ -32,6 +32,8 @@ public class TextElement extends Element {
         // end
 
         JPanel datePanel = new JPanel(new BorderLayout());
+        // W.I.P
+        int timeDifference = (date.get(Calendar.YEAR)*365 + date.get(Calendar.MONTH)*30 + date.get(Calendar.DATE)) - (localDate.get(Calendar.YEAR)*365 - (localDate.get(Calendar.MONTH)+1)*30 - localDate.get(Calendar.DATE));
         // wrap in a function
         JTextArea textArea2 = new JTextArea("Need to be completed before: " +
                 date.get(Calendar.DATE) + "/" +
