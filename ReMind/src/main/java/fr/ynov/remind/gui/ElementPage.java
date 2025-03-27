@@ -101,7 +101,7 @@ public class ElementPage {
         contentList.add(titleField);
         contentList.add(contentArea);
 
-        return getjPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
+        return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
     }
 
     private JPanel phoneElementCreationPanel(MainPage mainPage) {
@@ -184,7 +184,7 @@ public class ElementPage {
         contentList.add(contactName);
         contentList.add(phoneNumber);
 
-        return getjPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
+        return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
     }
 
     private JPanel saveCancelButtonsJPanel(MainPage mainPage, JPanel parentPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, Tags tag) {
@@ -221,5 +221,15 @@ public class ElementPage {
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    private JPanel elementCreationJPanel(MainPage mainPage, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, Tags tag) {
+        JPanel buttonPanel = saveCancelButtonsJPanel(mainPage, panel, spinnersList, contentList, tag);
+        panel.add(formPanel, BorderLayout.CENTER);
+        JPanel formButtonPanel = new JPanel();
+        formButtonPanel.setLayout(new BoxLayout(formButtonPanel, BoxLayout.Y_AXIS));
+        formButtonPanel.add(formPanel, BorderLayout.CENTER);
+        formButtonPanel.add(buttonPanel, BorderLayout.SOUTH);
+        return formButtonPanel;
     }
 }
