@@ -6,9 +6,10 @@ import main.java.fr.ynov.remind.gui.MainPage;
 import javax.swing.*;
 import java.util.Calendar;
 public abstract class Element {
-    protected Element(String name, Calendar date) {
+    protected Element(String name, Calendar date, Tags tag) {
         this.name = name;
         this.date = date;
+        this.tag = tag != null ? tag : Tags.Urgent;
     }
 
     public String getName() {
