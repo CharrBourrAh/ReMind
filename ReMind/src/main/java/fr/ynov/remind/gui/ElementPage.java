@@ -1,11 +1,14 @@
 package main.java.fr.ynov.remind.gui;
 
+import main.java.fr.ynov.remind.domain.PhoneElement;
+import main.java.fr.ynov.remind.domain.Tags;
 import main.java.fr.ynov.remind.domain.TextElement;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 public class ElementPage {
     private final JPanel panel;
@@ -26,7 +29,11 @@ public class ElementPage {
         panel.add(tabbedPane, BorderLayout.CENTER);
     }
 
+    private JPanel textElementCreationPanel(MainPage mainPage) {
         JPanel formPanel = new JPanel(new GridBagLayout());
+        List<JSpinner> spinnersList = new java.util.ArrayList<>(List.of());
+        List<JTextComponent> contentList = new java.util.ArrayList<>(List.of());
+
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 10, 5, 10);
         gbc.anchor = GridBagConstraints.WEST;
@@ -48,12 +55,13 @@ public class ElementPage {
 
         gbc.gridx = 1;
         gbc.weightx = 1.0;
+        Calendar localDate = Calendar.getInstance();
         JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JSpinner daySpinner = new JSpinner(new SpinnerNumberModel(1, 1, 31, 1));
-        JSpinner monthSpinner = new JSpinner(new SpinnerNumberModel(1, 1, 12, 1));
-        JSpinner yearSpinner = new JSpinner(new SpinnerNumberModel(2025, 1900, 2100, 1));
-        JSpinner hourSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 24, 1));
-        JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 60, 1));
+        JSpinner daySpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.DATE), 1, 31, 1));
+        JSpinner monthSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MONTH) + 1, 1, 12, 1));
+        JSpinner yearSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.YEAR), 1900, 2100, 1));
+        JSpinner hourSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.HOUR), 0, 24, 1));
+        JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MINUTE), 0, 60, 1));
         datePanel.add(daySpinner);
         datePanel.add(new JLabel(" / "));
         datePanel.add(monthSpinner);
@@ -67,11 +75,24 @@ public class ElementPage {
 
         gbc.gridx = 0;
         gbc.gridy = 2;
+        formPanel.add(new JLabel("Tags:"), gbc);
+        gbc.gridx = 1;
+        JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
+        tagsJComboBox.setSelectedIndex(0);
+        formPanel.add(tagsJComboBox, gbc);
+        spinnersList.add(yearSpinner);
+        spinnersList.add(monthSpinner);
+        spinnersList.add(daySpinner);
+        spinnersList.add(hourSpinner);
+        spinnersList.add(minuteSpinner);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
         gbc.weightx = 0.0;
         formPanel.add(new JLabel("Description:"), gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.weighty = 1.0;
         JTextArea contentArea = new JTextArea(10, 30);
@@ -80,9 +101,68 @@ public class ElementPage {
 
         JPanel buttonPanel = getJPanel(mainPage, titleField, contentArea, panel);
 
-        panel.add(headerPanel, BorderLayout.NORTH);
-        panel.add(formPanel, BorderLayout.CENTER);
-        panel.add(buttonPanel, BorderLayout.SOUTH);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 0.0;
+        formPanel.add(new JLabel("Ending Date:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        Calendar localDate = Calendar.getInstance();
+        JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JSpinner daySpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.DATE), 1, 31, 1));
+        JSpinner monthSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MONTH) + 1, 1, 12, 1));
+        JSpinner yearSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.YEAR), 1900, 2100, 1));
+        JSpinner hourSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.HOUR), 0, 24, 1));
+        JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MINUTE), 0, 60, 1));
+        datePanel.add(daySpinner);
+        datePanel.add(new JLabel(" / "));
+        datePanel.add(monthSpinner);
+        datePanel.add(new JLabel(" / "));
+        datePanel.add(yearSpinner);
+        datePanel.add(new JLabel(" at "));
+        datePanel.add(hourSpinner);
+        datePanel.add(new JLabel(" : "));
+        datePanel.add(minuteSpinner);
+        formPanel.add(datePanel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        formPanel.add(new JLabel("Tags:"), gbc);
+        gbc.gridx = 1;
+        JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
+        tagsJComboBox.setSelectedIndex(0);
+        formPanel.add(tagsJComboBox, gbc);
+        spinnersList.add(yearSpinner);
+        spinnersList.add(monthSpinner);
+        spinnersList.add(daySpinner);
+        spinnersList.add(hourSpinner);
+        spinnersList.add(minuteSpinner);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.weightx = 0.0;
+        formPanel.add(new JLabel("Contact name:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        JTextField contactName = new JTextField(20);
+        formPanel.add(contactName, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.weightx = 1.0;
+        formPanel.add(new JLabel("Phone number:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        JTextField phoneNumber = new JTextField(15);
+        formPanel.add(phoneNumber, gbc);
+        contentList.add(titleField);
+        contentList.add(contactName);
+        contentList.add(phoneNumber);
+
+        return getjPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
     }
 
     private JPanel getJPanel(MainPage mainPage, JTextField titleField, JTextArea contentArea, JPanel parentPanel) {
