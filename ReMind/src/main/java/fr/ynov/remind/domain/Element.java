@@ -31,4 +31,16 @@ public abstract class Element {
     protected Calendar date;
     protected Tags tag;
     public abstract JPanel display(ElementsFactory factory, MainPage mainPage);
+
+    JButton getDeleteJButton(ElementsFactory factory, MainPage mainPage) {
+        JButton deleteButton = new JButton("Delete");
+        deleteButton.addActionListener(_ -> {
+            int test = JOptionPane.showOptionDialog(null, "Are you sure to delete this note ?", "Confirming Deleting a Reminder", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, new String[]{"Yes", "No"}, 0);
+            if (test == JOptionPane.YES_OPTION) {
+                factory.removeElement(this);
+                mainPage.showMainPage();
+            }
+        });
+        return deleteButton;
+    }
 }
