@@ -30,18 +30,8 @@ public class PhoneElement extends Element{
         panel.add(new JLabel(name+"'s phone number : "));
         panel.add(phoneNumberArea, BorderLayout.CENTER);
 
-        JPanel modificationPanel = new JPanel();
-        modificationPanel.setLayout(new BoxLayout(modificationPanel, BoxLayout.X_AXIS));
-        modificationPanel.add(new JButton("Edit"), BorderLayout.SOUTH);
-        JButton deleteButton = getDeleteJButton(factory, mainPage);
-        modificationPanel.add(deleteButton, BorderLayout.SOUTH);
-        panel.add(modificationPanel, BorderLayout.SOUTH);
-
-        panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, panel.getPreferredSize().height));
+        getModificationPanel(panel, factory, mainPage);
 
         return panel;
     }
-
-
 }
