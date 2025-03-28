@@ -21,13 +21,10 @@ public class TextElement extends Element {
         JPanel panel = new JPanel();
         basicDisplayInfoPanel(panel);
 
-        // wrap in a function
         JTextArea textArea = new JTextArea(description);
         textArea.setEditable(false);
         textArea.setWrapStyleWord(true);
         textArea.setLineWrap(true);
-        // end
-
 
         JScrollPane scrollPane = new JScrollPane(textArea);
 
@@ -35,19 +32,9 @@ public class TextElement extends Element {
         preferredSize.height = 150;
         scrollPane.setPreferredSize(preferredSize);
 
-
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        JPanel modificationPanel = new JPanel();
-        modificationPanel.setLayout(new BoxLayout(modificationPanel, BoxLayout.X_AXIS));
-        modificationPanel.add(new JButton("Edit"), BorderLayout.SOUTH);
-        JButton deleteButton = getDeleteJButton(factory, mainPage);
-        modificationPanel.add(deleteButton, BorderLayout.SOUTH);
-        panel.add(modificationPanel, BorderLayout.SOUTH);
-
-        panel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, panel.getPreferredSize().height));
-
+        getModificationPanel(panel, factory, mainPage);
         return panel;
     }
 }
