@@ -23,4 +23,15 @@ public class ElementsFactory {
     public void updateElement(Integer id, Element element) {
         allElements.replace(id, element);
     }
+    public static int remainingTime(int year, int month, int day) {
+        int result = year * 365;
+        for (int i= month; i>0; i--) {
+            switch (i) {
+                case 1, 3, 5, 7, 8, 10, 12 -> result += 31;
+                case 4, 6, 9, 11 -> result += 30;
+                case 2 -> result += 28;
+            }
+        }
+        return result+day;
+    }
 }
