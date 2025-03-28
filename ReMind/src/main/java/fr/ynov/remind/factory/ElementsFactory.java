@@ -23,6 +23,16 @@ public class ElementsFactory {
     public void updateElement(Integer id, Element element) {
         allElements.replace(id, element);
     }
+
+    public static Tags toTags(String string) {
+        return switch (string) {
+            case "Urgent" -> Tags.Urgent;
+            case "Priority" -> Tags.Priority;
+            case "ToBeTreated" -> Tags.ToBeTreated;
+            default -> throw new IllegalStateException("Unexpected value: " + string);
+        };
+    }
+
     public static int remainingTime(int year, int month, int day) {
         int result = year * 365;
         for (int i= month; i>0; i--) {
