@@ -66,4 +66,16 @@ public abstract class Element {
         datePanel.add(textArea2, BorderLayout.CENTER);
         panel.add(datePanel, BorderLayout.NORTH);
     }
+
+    protected void getModificationPanel(JPanel panel, ElementsFactory factory, MainPage mainPage) {
+        JPanel modificationPanel = new JPanel();
+        modificationPanel.setLayout(new BoxLayout(modificationPanel, BoxLayout.X_AXIS));
+        modificationPanel.add(new JButton("Edit"), BorderLayout.SOUTH);
+        JButton deleteButton = getDeleteJButton(factory, mainPage);
+        modificationPanel.add(deleteButton, BorderLayout.SOUTH);
+        panel.add(modificationPanel, BorderLayout.SOUTH);
+
+        panel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, panel.getPreferredSize().height));
+    }
 }
