@@ -4,6 +4,7 @@ import main.java.fr.ynov.remind.factory.ElementsFactory;
 import main.java.fr.ynov.remind.gui.MainPage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Calendar;
 public abstract class Element {
     protected Element(String name, Calendar date, Tags tag) {
