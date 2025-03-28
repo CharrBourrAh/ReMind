@@ -35,60 +35,7 @@ public class ElementPage {
         List<JTextComponent> contentList = new java.util.ArrayList<>(List.of());
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 5, 10);
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        formPanel.add(new JLabel("Title:"), gbc);
-
-        gbc.gridx = 1;
-        gbc.weightx = 1.0;
-        JTextField titleField = new JTextField(20);
-        formPanel.add(titleField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.weightx = 0.0;
-        formPanel.add(new JLabel("Ending Date:"), gbc);
-
-        gbc.gridx = 1;
-        gbc.weightx = 1.0;
-        Calendar localDate = Calendar.getInstance();
-        JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JSpinner daySpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.DATE), 1, 31, 1));
-        JSpinner monthSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MONTH) + 1, 1, 12, 1));
-        JSpinner yearSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.YEAR), 1900, 2100, 1));
-        JSpinner hourSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.HOUR), 0, 24, 1));
-        JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MINUTE), 0, 60, 1));
-        datePanel.add(daySpinner);
-        datePanel.add(new JLabel(" / "));
-        datePanel.add(monthSpinner);
-        datePanel.add(new JLabel(" / "));
-        datePanel.add(yearSpinner);
-        datePanel.add(new JLabel(" at "));
-        datePanel.add(hourSpinner);
-        datePanel.add(new JLabel(" : "));
-        datePanel.add(minuteSpinner);
-        formPanel.add(datePanel, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        formPanel.add(new JLabel("Tags:"), gbc);
-        gbc.gridx = 1;
-        JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
-        tagsJComboBox.setSelectedIndex(0);
-        formPanel.add(tagsJComboBox, gbc);
-        spinnersList.add(yearSpinner);
-        spinnersList.add(monthSpinner);
-        spinnersList.add(daySpinner);
-        spinnersList.add(hourSpinner);
-        spinnersList.add(minuteSpinner);
-
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.weightx = 0.0;
+        JComboBox<Tags> tagsJComboBox = basicCreationElements(gbc, formPanel, spinnersList, contentList);
         formPanel.add(new JLabel("Description:"), gbc);
 
         gbc.gridx = 0;
@@ -98,7 +45,6 @@ public class ElementPage {
         JTextArea contentArea = new JTextArea(10, 30);
         JScrollPane scrollPane = new JScrollPane(contentArea);
         formPanel.add(scrollPane, gbc);
-        contentList.add(titleField);
         contentList.add(contentArea);
 
         return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
@@ -110,60 +56,9 @@ public class ElementPage {
         List<JSpinner> spinnersList = new java.util.ArrayList<>(List.of());
         List<JTextComponent> contentList = new java.util.ArrayList<>(List.of());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 5, 10);
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        JComboBox<Tags> tagsJComboBox = basicCreationElements(gbc, formPanel, spinnersList, contentList);
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        formPanel.add(new JLabel("Title:"), gbc);
 
-        gbc.gridx = 1;
-        gbc.weightx = 1.0;
-        JTextField titleField = new JTextField(20);
-        formPanel.add(titleField, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.weightx = 0.0;
-        formPanel.add(new JLabel("Ending Date:"), gbc);
-
-        gbc.gridx = 1;
-        gbc.weightx = 1.0;
-        Calendar localDate = Calendar.getInstance();
-        JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JSpinner daySpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.DATE), 1, 31, 1));
-        JSpinner monthSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MONTH) + 1, 1, 12, 1));
-        JSpinner yearSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.YEAR), 1900, 2100, 1));
-        JSpinner hourSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.HOUR), 0, 24, 1));
-        JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MINUTE), 0, 60, 1));
-        datePanel.add(daySpinner);
-        datePanel.add(new JLabel(" / "));
-        datePanel.add(monthSpinner);
-        datePanel.add(new JLabel(" / "));
-        datePanel.add(yearSpinner);
-        datePanel.add(new JLabel(" at "));
-        datePanel.add(hourSpinner);
-        datePanel.add(new JLabel(" : "));
-        datePanel.add(minuteSpinner);
-        formPanel.add(datePanel, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        formPanel.add(new JLabel("Tags:"), gbc);
-        gbc.gridx = 1;
-        JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
-        tagsJComboBox.setSelectedIndex(0);
-        formPanel.add(tagsJComboBox, gbc);
-        spinnersList.add(yearSpinner);
-        spinnersList.add(monthSpinner);
-        spinnersList.add(daySpinner);
-        spinnersList.add(hourSpinner);
-        spinnersList.add(minuteSpinner);
-
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.weightx = 0.0;
         formPanel.add(new JLabel("Contact name:"), gbc);
 
         gbc.gridx = 1;
@@ -180,9 +75,8 @@ public class ElementPage {
         gbc.weightx = 1.0;
         JTextField phoneNumber = new JTextField(15);
         formPanel.add(phoneNumber, gbc);
-        contentList.add(titleField);
-        contentList.add(contactName);
         contentList.add(phoneNumber);
+        contentList.add(contactName);
 
         return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
     }
@@ -231,5 +125,64 @@ public class ElementPage {
         formButtonPanel.add(formPanel, BorderLayout.CENTER);
         formButtonPanel.add(buttonPanel, BorderLayout.SOUTH);
         return formButtonPanel;
+    }
+
+    private JComboBox<Tags> basicCreationElements(GridBagConstraints gbc, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList) {
+        gbc.insets = new Insets(5, 10, 5, 10);
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        formPanel.add(new JLabel("Title:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        JTextField titleField = new JTextField(20);
+        formPanel.add(titleField, gbc);
+        contentList.add(titleField);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 0.0;
+        formPanel.add(new JLabel("Ending Date:"), gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        Calendar localDate = Calendar.getInstance();
+        JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JSpinner daySpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.DATE), 1, 31, 1));
+        JSpinner monthSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MONTH) + 1, 1, 12, 1));
+        JSpinner yearSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.YEAR), 1900, 2100, 1));
+        JSpinner hourSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.HOUR), 0, 24, 1));
+        JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MINUTE), 0, 60, 1));
+        datePanel.add(daySpinner);
+        datePanel.add(new JLabel(" / "));
+        datePanel.add(monthSpinner);
+        datePanel.add(new JLabel(" / "));
+        datePanel.add(yearSpinner);
+        datePanel.add(new JLabel(" at "));
+        datePanel.add(hourSpinner);
+        datePanel.add(new JLabel(" : "));
+        datePanel.add(minuteSpinner);
+        formPanel.add(datePanel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        spinnersList.add(yearSpinner);
+        spinnersList.add(monthSpinner);
+        spinnersList.add(daySpinner);
+        spinnersList.add(hourSpinner);
+        spinnersList.add(minuteSpinner);
+        formPanel.add(new JLabel("Tags:"), gbc);
+        gbc.gridx = 1;
+        JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
+        tagsJComboBox.setSelectedIndex(0);
+        formPanel.add(tagsJComboBox, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.weightx = 0.0;
+        return tagsJComboBox;
     }
 }
