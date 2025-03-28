@@ -17,12 +17,9 @@ public class TextElement extends Element {
 
     @Override
     public JPanel display(ElementsFactory factory, MainPage mainPage) {
-        Calendar localDate = Calendar.getInstance();
 
         JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createTitledBorder(getName()+" - "+tag.toString()));
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
+        basicDisplayInfoPanel(panel);
 
         // wrap in a function
         JTextArea textArea = new JTextArea(description);
@@ -31,24 +28,6 @@ public class TextElement extends Element {
         textArea.setLineWrap(true);
         // end
 
-        JPanel datePanel = new JPanel(new BorderLayout());
-        // W.I.P
-        int timeDifference = (date.get(Calendar.YEAR)*365 + date.get(Calendar.MONTH)*30 + date.get(Calendar.DATE)) - (localDate.get(Calendar.YEAR)*365 - (localDate.get(Calendar.MONTH)+1)*30 - localDate.get(Calendar.DATE));
-        // wrap in a function
-        JTextArea textArea2 = new JTextArea("Need to be completed before: " +
-                date.get(Calendar.DATE) + "/" +
-                date.get(Calendar.MONTH)  + "/" +
-                date.get(Calendar.YEAR) + " at " +
-                date.get(Calendar.HOUR) + ":"+
-                date.get(Calendar.MINUTE) +
-                ". Ends in : " +
-                timeDifference + " days");
-        textArea2.setEditable(false);
-        textArea2.setWrapStyleWord(true);
-        textArea2.setLineWrap(true);
-        // end
-        datePanel.add(textArea2, BorderLayout.CENTER);
-        panel.add(datePanel, BorderLayout.NORTH);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
 
