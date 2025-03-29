@@ -94,10 +94,10 @@ public class ElementPage {
             Calendar calendar = Calendar.getInstance();
             calendar.set(spinnersList.getFirst().getValue().hashCode(), spinnersList.get(1).getValue().hashCode(), spinnersList.get(2).getValue().hashCode(), spinnersList.get(3).getValue().hashCode(), spinnersList.get(4).getValue().hashCode());
             if (contentList.size() == 2) {
-                mainPage.elementsFactory.addElement(mainPage.elementsFactory.getAllElements().size(), new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), tag));
+                mainPage.elementsFactory.addElement(new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), tag));
             }
             if (contentList.size() == 3) {
-                mainPage.elementsFactory.addElement(mainPage.elementsFactory.getAllElements().size(), new PhoneElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), contentList.get(2).getText(), tag));
+                mainPage.elementsFactory.addElement(new PhoneElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), contentList.get(2).getText(), tag));
             }
             JOptionPane.showMessageDialog(panel,
                     "Reminder saved: " + contentList.getFirst().getText(),
