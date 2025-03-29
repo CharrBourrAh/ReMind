@@ -12,7 +12,7 @@ public class ElementsFactory {
     private final TreeMap<Integer, Element> allElements = new TreeMap<Integer, Element>();
 
 
-    public void addElement(int size, Element element) {
+    public void addElement(Element element) {
         allElements.put(allElements.size(), element);
     }
 
