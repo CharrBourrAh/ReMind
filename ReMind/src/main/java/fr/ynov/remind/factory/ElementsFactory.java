@@ -37,8 +37,13 @@ public void removeElement(Element element) {
     allElements.putAll(newMap);
 }
 
-    public void updateElement(Integer id, Element element) {
-        allElements.replace(id, element);
+    public void updateElement(Element element) {
+        for (Integer key : allElements.keySet()) {
+            if (allElements.get(key) == element) {
+                allElements.replace(key, element);
+                return;
+            }
+        }
     }
 
     public static Tags toTags(String string) {
