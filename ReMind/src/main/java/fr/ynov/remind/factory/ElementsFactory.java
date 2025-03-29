@@ -16,9 +16,26 @@ public class ElementsFactory {
         allElements.put(allElements.size(), element);
     }
 
-    public void removeElement(Element element) {
-        allElements.values().remove(element);
+public void removeElement(Element element) {
+    Integer keyToRemove = null;
+    for (Integer key : allElements.keySet()) {
+        if (allElements.get(key) == element) {
+            keyToRemove = key;
+            break;
+        }
     }
+    if (keyToRemove == null) {
+        return;
+    }
+    allElements.remove(keyToRemove);
+    TreeMap<Integer, Element> newMap = new TreeMap<>();
+    int newIndex = 0;
+    for (Element elem : allElements.values()) {
+        newMap.put(newIndex++, elem);
+    }
+    allElements.clear();
+    allElements.putAll(newMap);
+}
 
     public void updateElement(Integer id, Element element) {
         allElements.replace(id, element);
