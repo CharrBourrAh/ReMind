@@ -48,9 +48,8 @@ public abstract class Element {
     protected void basicDisplayInfoPanel(JPanel panel) {
         panel.setBorder(BorderFactory.createTitledBorder(getName()+" - "+this.tag.toString()));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        Calendar localDate = Calendar.getInstance();
         JPanel datePanel = new JPanel(new BorderLayout());
-        int timeDifference = (ElementsFactory.remainingTime(date.get(Calendar.YEAR),date.get(Calendar.MONTH)+1,date.get(Calendar.DATE))) - (localDate.get(Calendar.YEAR)*365 - (localDate.get(Calendar.MONTH)+1)*30 - localDate.get(Calendar.DATE));
+        int timeDifference = ElementsFactory.remainingTime(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
         // wrap in a function
         JTextArea textArea2 = new JTextArea("Need to be completed before: " +
                 date.get(Calendar.DATE) + "/" +
