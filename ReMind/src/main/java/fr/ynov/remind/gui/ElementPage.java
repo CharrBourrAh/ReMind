@@ -35,7 +35,8 @@ public class ElementPage {
         List<JTextComponent> contentList = new java.util.ArrayList<>(List.of());
 
         GridBagConstraints gbc = new GridBagConstraints();
-        JComboBox<Tags> tagsJComboBox = basicCreationElements(gbc, formPanel, spinnersList, contentList);
+        JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
+        basicCreationElements(gbc, formPanel, spinnersList, contentList, tagsJComboBox);
         formPanel.add(new JLabel("Description:"), gbc);
 
         gbc.gridx = 0;
@@ -47,16 +48,17 @@ public class ElementPage {
         formPanel.add(scrollPane, gbc);
         contentList.add(contentArea);
 
-        return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
+        return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList,tagsJComboBox);
     }
 
     private JPanel phoneElementCreationPanel(MainPage mainPage) {
         JPanel formPanel = new JPanel(new GridBagLayout());
 
-        List<JSpinner> spinnersList = new java.util.ArrayList<>(List.of());
-        List<JTextComponent> contentList = new java.util.ArrayList<>(List.of());
+        List<JSpinner> spinnersList = new ArrayList<>(List.of());
+        List<JTextComponent> contentList = new ArrayList<>(List.of());
         GridBagConstraints gbc = new GridBagConstraints();
-        JComboBox<Tags> tagsJComboBox = basicCreationElements(gbc, formPanel, spinnersList, contentList);
+        JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
+        basicCreationElements(gbc, formPanel, spinnersList, contentList, tagsJComboBox);
 
 
         formPanel.add(new JLabel("Contact name:"), gbc);
@@ -78,10 +80,10 @@ public class ElementPage {
         contentList.add(phoneNumber);
         contentList.add(contactName);
 
-        return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList, tagsJComboBox.getPrototypeDisplayValue());
+        return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList,tagsJComboBox);
     }
 
-    private JPanel saveCancelButtonsJPanel(MainPage mainPage, JPanel parentPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, Tags tag) {
+    private JPanel saveCancelButtonsJPanel(MainPage mainPage, JPanel parentPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, JComboBox<Tags> tagsJComboBox) {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
         JButton cancelButton = new JButton("Cancel");
@@ -93,6 +95,8 @@ public class ElementPage {
         saveButton.addActionListener(_ -> {
             Calendar calendar = Calendar.getInstance();
             calendar.set(spinnersList.getFirst().getValue().hashCode(), spinnersList.get(1).getValue().hashCode(), spinnersList.get(2).getValue().hashCode(), spinnersList.get(3).getValue().hashCode(), spinnersList.get(4).getValue().hashCode());
+            Tags selectedTag = (Tags) tagsJComboBox.getSelectedItem();
+
             if (contentList.size() == 2) {
                 mainPage.elementsFactory.addElement(new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), tag));
             }
@@ -117,8 +121,8 @@ public class ElementPage {
         return panel;
     }
 
-    private JPanel elementCreationJPanel(MainPage mainPage, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, Tags tag) {
-        JPanel buttonPanel = saveCancelButtonsJPanel(mainPage, panel, spinnersList, contentList, tag);
+    private JPanel elementCreationJPanel(MainPage mainPage, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList,JComboBox<Tags> tagsJComboBox) {
+        JPanel buttonPanel = saveCancelButtonsJPanel(mainPage, panel, spinnersList, contentList, tagsJComboBox);
         panel.add(formPanel, BorderLayout.CENTER);
         JPanel formButtonPanel = new JPanel();
         formButtonPanel.setLayout(new BoxLayout(formButtonPanel, BoxLayout.Y_AXIS));
@@ -127,7 +131,7 @@ public class ElementPage {
         return formButtonPanel;
     }
 
-    private JComboBox<Tags> basicCreationElements(GridBagConstraints gbc, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList) {
+    private void basicCreationElements(GridBagConstraints gbc, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, JComboBox<Tags> tagsJComboBox) {
         gbc.insets = new Insets(5, 10, 5, 10);
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -176,13 +180,11 @@ public class ElementPage {
         spinnersList.add(minuteSpinner);
         formPanel.add(new JLabel("Tags:"), gbc);
         gbc.gridx = 1;
-        JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
         tagsJComboBox.setSelectedIndex(0);
         formPanel.add(tagsJComboBox, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weightx = 0.0;
-        return tagsJComboBox;
     }
 }
