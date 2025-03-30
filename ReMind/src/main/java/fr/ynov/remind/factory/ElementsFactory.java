@@ -1,6 +1,7 @@
 package main.java.fr.ynov.remind.factory;
 
 import main.java.fr.ynov.remind.domain.Element;
+import main.java.fr.ynov.remind.domain.Tags;
 
 import java.util.Calendar;
 import java.util.TreeMap;
