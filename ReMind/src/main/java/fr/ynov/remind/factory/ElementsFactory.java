@@ -1,7 +1,6 @@
 package main.java.fr.ynov.remind.factory;
 
 import main.java.fr.ynov.remind.domain.Element;
-import main.java.fr.ynov.remind.domain.Tags;
 
 import java.util.Calendar;
 import java.util.TreeMap;
@@ -46,15 +45,6 @@ public void removeElement(Element element) {
                 return;
             }
         }
-    }
-
-    public static Tags toTags(String string) {
-        return switch (string) {
-            case "Urgent" -> Tags.Urgent;
-            case "Priority" -> Tags.Priority;
-            case "ToBeTreated" -> Tags.ToBeTreated;
-            default -> throw new IllegalStateException("Unexpected value: " + string);
-        };
     }
 
     private static int timeCalculation(int year, int month, int day) {
