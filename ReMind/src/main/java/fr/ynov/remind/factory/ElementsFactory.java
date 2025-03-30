@@ -2,6 +2,7 @@ package main.java.fr.ynov.remind.factory;
 
 import main.java.fr.ynov.remind.domain.Element;
 
+import java.util.Calendar;
 import java.util.TreeMap;
 
 public class ElementsFactory {
@@ -55,7 +56,7 @@ public void removeElement(Element element) {
         };
     }
 
-    public static int remainingTime(int year, int month, int day) {
+    private static int timeCalculation(int year, int month, int day) {
         int result = year * 365;
         for (int i= month; i>0; i--) {
             switch (i) {
@@ -65,5 +66,10 @@ public void removeElement(Element element) {
             }
         }
         return result+day;
+    }
+
+    public static int remainingTime(int year1, int month1, int day1) {
+        Calendar localDate = Calendar.getInstance();
+        return timeCalculation(year1, month1, day1) - timeCalculation(localDate.get(Calendar.YEAR), localDate.get(Calendar.MONTH)+1, localDate.get(Calendar.DAY_OF_MONTH));
     }
 }
