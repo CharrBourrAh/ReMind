@@ -51,7 +51,6 @@ public abstract class Element {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JPanel datePanel = new JPanel(new BorderLayout());
         int timeDifference = ElementsFactory.remainingTime(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
-        // wrap in a function
         JTextArea textArea2 = new JTextArea("Need to be completed before: " +
                 date.get(Calendar.DATE) + "/" +
                 date.get(Calendar.MONTH)  + "/" +
