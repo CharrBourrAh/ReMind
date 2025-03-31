@@ -26,12 +26,17 @@ public abstract class Element {
         return date;
     }
 
-    public void setDate(Calendar date) {
-        this.date = date;
+    public String getName() {
+        return name;
     }
 
     protected String name;
     protected Calendar date;
+
+    public Tags getTag() {
+        return tag;
+    }
+
     protected Tags tag;
     public abstract JPanel display(ElementsFactory factory, MainPage mainPage);
 
