@@ -3,8 +3,10 @@ package main.java.fr.ynov.remind.domain;
 import main.java.fr.ynov.remind.factory.ElementsFactory;
 import main.java.fr.ynov.remind.gui.MainPage;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import java.awt.BorderLayout;
 import java.util.Calendar;
 
 public class PhoneElement extends Element{
