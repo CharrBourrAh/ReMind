@@ -116,10 +116,10 @@ public class ElementPage {
             Tags selectedTag = (Tags) tagsJComboBox.getSelectedItem();
 
             if (contentList.size() == 2) {
-                mainPage.elementsFactory.addElement(new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), tag));
+                mainPage.elementsFactory.addElement(new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), selectedTag));
             }
             if (contentList.size() == 3) {
-                mainPage.elementsFactory.addElement(new PhoneElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), contentList.get(2).getText(), tag));
+                mainPage.elementsFactory.addElement(new PhoneElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), contentList.get(2).getText(), selectedTag));
             }
             JOptionPane.showMessageDialog(panel,
                     "Reminder saved: " + contentList.getFirst().getText(),
