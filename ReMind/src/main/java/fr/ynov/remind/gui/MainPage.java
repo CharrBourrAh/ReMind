@@ -35,9 +35,16 @@ public class MainPage extends JFrame {
     private JPanel mainPagePanel;
     private JScrollPane reminderScrollPanel = new JScrollPane();
 
+    public void setElementPage(ElementPage elementPage) {
+        this.elementPage = elementPage;
+    }
+
     public ElementPage getElementPage() {
         return elementPage;
     }
+
+    private ElementPage elementPage;
+
     public void mainPage(ElementsFactory elementsFactory) {
         this.elementsFactory = elementsFactory;
         setTitle("ReMind");
