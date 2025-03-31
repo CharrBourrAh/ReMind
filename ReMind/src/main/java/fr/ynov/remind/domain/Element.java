@@ -41,6 +41,7 @@ public abstract class Element {
             int test = JOptionPane.showOptionDialog(null, "Are you sure to delete this note ?", "Confirming Deleting a Reminder", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, new String[]{"Yes", "No"}, 0);
             if (test == JOptionPane.YES_OPTION) {
                 factory.removeElement(this);
+                JsonHandler.saveDataToJSon(factory);
                 mainPage.showMainPage();
             }
         });
