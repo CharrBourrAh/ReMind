@@ -11,6 +11,10 @@ import java.awt.Dimension;
 import java.util.Calendar;
 
 public class TextElement extends Element {
+    public String getDescription() {
+        return description;
+    }
+
     String description;
 
     public TextElement(String name, Calendar date, String description, Tags tag) {
