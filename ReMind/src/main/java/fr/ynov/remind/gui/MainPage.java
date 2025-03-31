@@ -16,12 +16,28 @@ import java.awt.Dimension;
 import java.awt.Component;
 
 public class MainPage extends JFrame {
+    public CardLayout getCardLayout() {
+        return cardLayout;
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
     private CardLayout cardLayout;
     private JPanel mainPanel;
     protected ElementsFactory elementsFactory;
+
+    public JPanel getMainPagePanel() {
+        return mainPagePanel;
+    }
+
     private JPanel mainPagePanel;
     private JScrollPane reminderScrollPanel = new JScrollPane();
 
+    public ElementPage getElementPage() {
+        return elementPage;
+    }
     public void mainPage(ElementsFactory elementsFactory) {
         this.elementsFactory = elementsFactory;
         setTitle("ReMind");
