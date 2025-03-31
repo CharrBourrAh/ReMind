@@ -1,6 +1,7 @@
 package main.java.fr.ynov.remind.factory;
 
 import main.java.fr.ynov.remind.domain.Element;
+import main.java.fr.ynov.remind.domain.Tags;
 
 import java.util.Calendar;
 import java.util.TreeMap;
@@ -62,5 +63,13 @@ public void removeElement(Element element) {
     public static int remainingTime(int year1, int month1, int day1) {
         Calendar localDate = Calendar.getInstance();
         return timeCalculation(year1, month1, day1) - timeCalculation(localDate.get(Calendar.YEAR), localDate.get(Calendar.MONTH)+1, localDate.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public static Tags stringToTag(String tag) {
+        return switch (tag) {
+            case "ToBeTreated" -> Tags.ToBeTreated;
+            case "Priority" -> Tags.Priority;
+            default -> Tags.Urgent;
+        };
     }
 }
