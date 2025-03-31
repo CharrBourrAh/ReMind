@@ -1,12 +1,30 @@
 package main.java.fr.ynov.remind.gui;
 
+import main.java.fr.ynov.remind.domain.Element;
 import main.java.fr.ynov.remind.domain.PhoneElement;
 import main.java.fr.ynov.remind.domain.Tags;
 import main.java.fr.ynov.remind.domain.TextElement;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.BoxLayout;
 import javax.swing.text.JTextComponent;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
