@@ -1,7 +1,7 @@
 package main.java.fr.ynov.remind.domain;
 
 import main.java.fr.ynov.remind.factory.ElementsFactory;
-import main.java.fr.ynov.remind.gui.ElementPage;
+import main.java.fr.ynov.remind.factory.JsonHandler;
 import main.java.fr.ynov.remind.gui.MainPage;
 
 import javax.swing.JButton;
@@ -70,7 +70,7 @@ public abstract class Element {
     protected void getModificationPanel(JPanel panel, ElementsFactory factory, MainPage mainPage) {
         JPanel modificationPanel = new JPanel();
         modificationPanel.setLayout(new BoxLayout(modificationPanel, BoxLayout.X_AXIS));
-        modificationPanel.add(new JButton("Edit"), BorderLayout.SOUTH);
+
         JButton deleteButton = getDeleteJButton(factory, mainPage);
         modificationPanel.add(deleteButton, BorderLayout.SOUTH);
         panel.add(modificationPanel, BorderLayout.SOUTH);
