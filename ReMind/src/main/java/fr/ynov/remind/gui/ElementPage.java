@@ -125,7 +125,7 @@ public class ElementPage {
                     "Reminder saved: " + contentList.getFirst().getText(),
                     "Information",
                     JOptionPane.INFORMATION_MESSAGE);
-
+            JsonHandler.saveDataToJSon(mainPage.elementsFactory);
             parentPanel.setVisible(false);
             mainPage.showMainPage();
         });
