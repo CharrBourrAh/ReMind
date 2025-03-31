@@ -3,8 +3,17 @@ package main.java.fr.ynov.remind.gui;
 import main.java.fr.ynov.remind.domain.Element;
 import main.java.fr.ynov.remind.factory.ElementsFactory;
 
-import javax.swing.*;
-import java.awt.*;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.Box;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Component;
 
 public class MainPage extends JFrame {
     private CardLayout cardLayout;
