@@ -39,15 +39,6 @@ public void removeElement(Element element) {
     allElements.putAll(newMap);
 }
 
-    public void updateElement(Element element) {
-        for (Integer key : allElements.keySet()) {
-            if (allElements.get(key) == element) {
-                allElements.replace(key, element);
-                return;
-            }
-        }
-    }
-
     private static int timeCalculation(int year, int month, int day) {
         int result = year * 365;
         for (int i= month; i>0; i--) {
