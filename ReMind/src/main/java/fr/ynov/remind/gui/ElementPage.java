@@ -1,9 +1,9 @@
 package main.java.fr.ynov.remind.gui;
 
-import main.java.fr.ynov.remind.domain.Element;
 import main.java.fr.ynov.remind.domain.PhoneElement;
 import main.java.fr.ynov.remind.domain.Tags;
 import main.java.fr.ynov.remind.domain.TextElement;
+import main.java.fr.ynov.remind.factory.JsonHandler;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
