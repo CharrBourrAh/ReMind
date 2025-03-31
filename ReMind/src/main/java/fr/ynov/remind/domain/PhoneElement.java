@@ -11,11 +11,20 @@ import java.util.Calendar;
 
 public class PhoneElement extends Element{
     String phoneNumber;
-    String name;
-    public PhoneElement(String title, Calendar date, String phoneNumber, String name, Tags tag) {
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    String contactName;
+    public PhoneElement(String title, Calendar date, String phoneNumber, String contactName, Tags tag) {
         super(title, date, tag);
         this.phoneNumber = phoneNumber;
-        this.name = name;
+        this.contactName = contactName;
     }
 
     @Override
