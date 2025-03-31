@@ -45,7 +45,7 @@ public class MainPage extends JFrame {
 
         displayElements(elementsFactory, mainPagePanel);
 
-        elementPage = new ElementPage(this);
+        ElementPage elementPage = new ElementPage(this);
         JPanel elementPagePanel = elementPage.getPanel();
 
         mainPanel.add(mainPagePanel, "mainPage");
