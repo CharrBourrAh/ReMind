@@ -22,14 +22,6 @@ public abstract class Element {
         this.tag = tag != null ? tag : Tags.Urgent;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Calendar getDate() {
         return date;
     }
