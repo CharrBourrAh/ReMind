@@ -69,9 +69,9 @@ public class ElementsFactory {
         int result = 0;
         for (int j = 0; j < year; j++) {
             if (j % 4 == 0) {
-                result += 366;
+                result += 366; // leap year
             } else {
-                result += 365;
+                result += 365; // normal year
             }
         }
         for (int i = month; i > 0; i--) {
@@ -80,9 +80,9 @@ public class ElementsFactory {
                 case 4, 6, 9, 11 -> result += 30;
                 case 2 -> {
                     if (year % 4 == 0) {
-                        result += 29;
+                        result += 29; // february leap year
                     } else {
-                        result += 28;
+                        result += 28; // february normal year
                     }
                 }
             }
