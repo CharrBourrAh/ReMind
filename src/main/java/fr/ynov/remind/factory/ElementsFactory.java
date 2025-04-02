@@ -79,7 +79,8 @@ public class ElementsFactory {
 
     public static int remainingTime(int year1, int month1, int day1) {
         Calendar localDate = Calendar.getInstance();
-        return timeCalculation(year1, month1, day1) - timeCalculation(localDate.get(Calendar.YEAR), localDate.get(Calendar.MONTH)+1, localDate.get(Calendar.DAY_OF_MONTH));
+        // Get the current date
+        return timeCalculation(year1, month1, day1) - timeCalculation(localDate.get(Calendar.YEAR), localDate.get(Calendar.MONTH) + 1, localDate.get(Calendar.DAY_OF_MONTH));
     }
 
     public static Tags stringToTag(String tag) {
