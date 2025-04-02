@@ -50,7 +50,7 @@ public class PhoneElement extends Element{
         panel.add(new JLabel(name+"'s phone number : "));
         panel.add(phoneNumberArea, BorderLayout.CENTER);
 
-        getModificationPanel(panel, factory, mainPage);
+        getButtonPanel(panel, factory, mainPage);
 
         return panel;
     }
