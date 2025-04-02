@@ -146,16 +146,28 @@ public class ElementPage {
             Tags selectedTag = (Tags) tagsJComboBox.getSelectedItem();
 
             if (contentList.size() == 2) {
-                mainPage.elementsFactory.addElement(new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), selectedTag));
+                try {
+                    mainPage.elementsFactory.addElement(new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), selectedTag));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
             if (contentList.size() == 3) {
-                mainPage.elementsFactory.addElement(new PhoneElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), contentList.get(2).getText(), selectedTag));
+                try {
+                    mainPage.elementsFactory.addElement(new PhoneElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), contentList.get(2).getText(), selectedTag));
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
             JOptionPane.showMessageDialog(panel,
                     "Reminder saved: " + contentList.getFirst().getText(),
                     "Information",
                     JOptionPane.INFORMATION_MESSAGE);
-            JsonHandler.saveDataToJSon(mainPage.elementsFactory);
+            try {
+                JsonHandler.saveDataToJSon(mainPage.elementsFactory);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             parentPanel.setVisible(false);
             mainPage.showMainPage();
         });
