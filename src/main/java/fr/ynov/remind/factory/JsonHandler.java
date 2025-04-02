@@ -37,6 +37,7 @@ public class JsonHandler {
             }
             JSONParser jsonParser = new JSONParser();
             FileReader reader = new FileReader(filePath);
+            // Parse the JSON file
             JSONArray jsonElements = (JSONArray) jsonParser.parse(reader);
 
             for (Object jsonElement : jsonElements) {
@@ -45,6 +46,7 @@ public class JsonHandler {
 
                 String title = (String) jsonObject.get("title");
                 String tag = (String) jsonObject.get("tag");
+                // Convert the date from milliseconds to a Calendar object
                 long timeInMillis = (long) jsonObject.get("date");
                 Calendar date = Calendar.getInstance();
                 date.setTimeInMillis(timeInMillis);
@@ -70,12 +72,13 @@ public class JsonHandler {
 
     /**
      * This method saves the elements from the ElementsFactory to a JSON file.
-     * @param elementsFactory
+     * @param elementsFactory The factory that creates and manages the different elements.
      * @throws Exception
      */
     public static void saveDataToJSon(ElementsFactory elementsFactory) throws Exception {
         JSONArray jsonElements = new JSONArray();
 
+        // Check if the elementsFactory is not empty
         if (!elementsFactory.getAllElements().isEmpty()) {
             for (Element elementIterator : elementsFactory.getAllElements().values()) {
                 JSONObject jsonElement = getJsonObject(elementIterator);
@@ -86,6 +89,7 @@ public class JsonHandler {
             jsonElements.clear();
         }
 
+        // Write the JSON array to a file
         try (FileWriter fileWriter = new FileWriter(filePath)) {
             fileWriter.write(jsonElements.toJSONString());
             System.out.println("Data successfully written in :" + filePath);
@@ -107,6 +111,7 @@ public class JsonHandler {
         jsonElement.put("tag", elementIterator.getTag().name());
         jsonElement.put("date", elementIterator.getDate().getTimeInMillis());
 
+        // Check the type of the element and add the corresponding properties
         if (elementIterator instanceof TextElement) {
             jsonElement.put("type", "TEXT");
             jsonElement.put("description", ((TextElement) elementIterator).getDescription());
