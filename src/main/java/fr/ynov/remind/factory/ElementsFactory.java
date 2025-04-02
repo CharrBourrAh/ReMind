@@ -18,27 +18,48 @@ public class ElementsFactory {
         allElements.put(allElements.size(), element);
     }
 
-public void removeElement(Element element) {
-    Integer keyToRemove = null;
-    for (Integer key : allElements.keySet()) {
-        if (allElements.get(key) == element) {
-            keyToRemove = key;
-            break;
+    /**
+     * This method removes an element from the list of elements.
+     * @param element
+     * @throws Exception
+     */
+    public void removeElement(Element element) throws Exception {
+        Integer keyToRemove = null;
+        // Find the key associated with the element to be removed
+        for (Integer key : allElements.keySet()) {
+            if (allElements.get(key) == element) {
+                keyToRemove = key;
+                break;
+            }
+        }
+        if (keyToRemove == null) {
+            return; // If the element isn't found
+        }
+        try {
+            // Remove the element from the TreeMap
+            allElements.remove(keyToRemove);
+
+            // Re-indexing the TreeMap
+            TreeMap<Integer, Element> newMap = new TreeMap<>();
+            int newIndex = 0;
+            for (Element elem : allElements.values()) {
+                newMap.put(newIndex++, elem);
+            }
+            allElements.clear();
+            allElements.putAll(newMap);
+        } catch (Exception e) {
+            throw new Exception(e);
         }
     }
-    if (keyToRemove == null) {
-        return;
-    }
-    allElements.remove(keyToRemove);
-    TreeMap<Integer, Element> newMap = new TreeMap<>();
-    int newIndex = 0;
-    for (Element elem : allElements.values()) {
-        newMap.put(newIndex++, elem);
-    }
-    allElements.clear();
-    allElements.putAll(newMap);
-}
 
+    /**
+     * This method calculates the time in days following the given year, month and day.
+     *
+     * @param year
+     * @param month
+     * @param day
+     * @return integer
+     */
     private static int timeCalculation(int year, int month, int day) {
         int result = year * 365;
         for (int i= month; i>0; i--) {
