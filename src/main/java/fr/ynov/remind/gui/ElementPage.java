@@ -31,6 +31,14 @@ import java.util.List;
 public class ElementPage {
     private final JPanel panel;
 
+    /**
+     * Constructor for ElementPage.
+     * This method initializes the element page of the application
+     * by setting up the different components to correctly show the stored elements.
+     * It creates a tabbed pane to switch between the text and phone element creation panels.
+     *
+     * @param mainPage object of MainPage
+     */
     public ElementPage(MainPage mainPage) {
         panel = new JPanel(new BorderLayout());
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -47,6 +55,12 @@ public class ElementPage {
         panel.add(tabbedPane, BorderLayout.CENTER);
     }
 
+    /**
+     * Creates a panel for the text element creation
+     * that will be used in a tabbed panel on the ElementPage function above.
+     * @param mainPage object of MainPage
+     * @return JPanel
+     */
     private JPanel textElementCreationPanel(MainPage mainPage) {
         JPanel formPanel = new JPanel(new GridBagLayout());
         List<JSpinner> spinnersList = new java.util.ArrayList<>(List.of());
@@ -69,6 +83,12 @@ public class ElementPage {
         return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList,tagsJComboBox);
     }
 
+    /**
+     * Creates a panel for the phone element creation
+     * that will be used in a tabbed panel on the ElementPage function above.
+     * @param mainPage object of MainPage
+     * @return JPanel
+     */
     private JPanel phoneElementCreationPanel(MainPage mainPage) {
         JPanel formPanel = new JPanel(new GridBagLayout());
 
@@ -101,6 +121,16 @@ public class ElementPage {
         return elementCreationJPanel(mainPage, formPanel, spinnersList, contentList,tagsJComboBox);
     }
 
+    /**
+     * Creates a panel with save and cancel buttons
+     * that will be used in the element creation panel.
+     * @param mainPage object of MainPage
+     * @param parentPanel the parent panel to hide when saving or canceling
+     * @param spinnersList list of spinners for date and time
+     * @param contentList list of text components for title and description
+     * @param tagsJComboBox combo box for selecting tags
+     * @return JPanel with save and cancel buttons
+     */
     private JPanel saveCancelButtonsJPanel(MainPage mainPage, JPanel parentPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, JComboBox<Tags> tagsJComboBox) {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
@@ -139,6 +169,16 @@ public class ElementPage {
         return panel;
     }
 
+    /**
+     * This method creates the main panel for the element creation
+     * and adds the form panel and the button panel to it.
+     * @param mainPage object of MainPage
+     * @param formPanel the form panel containing the input fields
+     * @param spinnersList list of spinners for date and time
+     * @param contentList list of text components for title and description
+     * @param tagsJComboBox combo box for selecting tags
+     * @return JPanel with the form and button panels
+     */
     private JPanel elementCreationJPanel(MainPage mainPage, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList,JComboBox<Tags> tagsJComboBox) {
         JPanel buttonPanel = saveCancelButtonsJPanel(mainPage, panel, spinnersList, contentList, tagsJComboBox);
         panel.add(formPanel, BorderLayout.CENTER);
@@ -149,6 +189,14 @@ public class ElementPage {
         return formButtonPanel;
     }
 
+    /**
+     * This method creates the basic elements of the form (title, ending date, tags)
+     * @param gbc GridBagConstraints for layout management
+     * @param formPanel the form panel to add elements to
+     * @param spinnersList list of spinners for date and time
+     * @param contentList list of text components for title and description
+     * @param tagsJComboBox combo box for selecting tags
+     */
     private void basicCreationElements(GridBagConstraints gbc, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, JComboBox<Tags> tagsJComboBox) {
         gbc.insets = new Insets(5, 10, 5, 10);
         gbc.anchor = GridBagConstraints.WEST;
