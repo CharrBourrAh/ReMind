@@ -54,8 +54,8 @@ public class TextElement extends Element {
 
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        getButtonPanel(panel, factory, mainPage);
         // Adds a delete button to the panel
+        getDeleteButtonPanel(panel, factory, mainPage);
         return panel;
     }
 }
