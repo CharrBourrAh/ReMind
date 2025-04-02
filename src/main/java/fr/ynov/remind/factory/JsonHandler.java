@@ -18,6 +18,12 @@ import java.util.Calendar;
 public class JsonHandler {
     private static final String filePath = "src/main/resources/elements.txt";
 
+    /**
+     * This method loads data from a JSON file and populates the ElementsFactory with the elements.
+     * It creates a new file if it doesn't exist.
+     *
+     * @param elementsFactory The factory that creates and manages the different elements.
+     */
     public static void loadDataFromJSon(ElementsFactory elementsFactory) {
         try {
             File file = new File(filePath);
@@ -34,6 +40,7 @@ public class JsonHandler {
             JSONArray jsonElements = (JSONArray) jsonParser.parse(reader);
 
             for (Object jsonElement : jsonElements) {
+                // Parse each JSON object
                 JSONObject jsonObject = (JSONObject) jsonElement;
 
                 String title = (String) jsonObject.get("title");
@@ -42,6 +49,7 @@ public class JsonHandler {
                 Calendar date = Calendar.getInstance();
                 date.setTimeInMillis(timeInMillis);
 
+                // Check the type of the element and create the corresponding object
                 if ("TEXT".equals(jsonObject.get("type"))) {
                     String description = (String) jsonObject.get("description");
                     elementsFactory.addElement(new TextElement(title, date, description, ElementsFactory.stringToTag(tag)));
@@ -58,11 +66,15 @@ public class JsonHandler {
         }
     }
 
-    public static void saveDataToJSon(ElementsFactory elementsFactory) {
+    /**
+     * This method saves the elements from the ElementsFactory to a JSON file.
+     * @param elementsFactory
+     * @throws Exception
+     */
+    public static void saveDataToJSon(ElementsFactory elementsFactory) throws Exception {
         JSONArray jsonElements = new JSONArray();
 
         if (!elementsFactory.getAllElements().isEmpty()) {
-            System.out.println(elementsFactory.getAllElements());
             for (Element elementIterator : elementsFactory.getAllElements().values()) {
                 JSONObject jsonElement = getJsonObject(elementIterator);
 
@@ -81,6 +93,11 @@ public class JsonHandler {
         }
     }
 
+    /**
+     * This method is used to create a JSON object from one of the elements.
+     * @param elementIterator
+     * @return JSONObject
+     */
     private static JSONObject getJsonObject(Element elementIterator) {
         JSONObject jsonElement = new JSONObject();
         jsonElement.put("title", elementIterator.getName());
