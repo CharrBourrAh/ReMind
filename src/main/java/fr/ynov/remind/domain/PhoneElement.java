@@ -39,18 +39,21 @@ public class PhoneElement extends Element{
     @Override
     public JPanel display(ElementsFactory factory, MainPage mainPage) {
         JPanel panel = new JPanel();
+        // Adds basic display info to the panel
         basicDisplayInfoPanel(panel);
 
+        // Creates a JTextArea to show the phone number
         JTextArea phoneNumberArea = new JTextArea(phoneNumber);
         phoneNumberArea.setEditable(false);
         phoneNumberArea.setWrapStyleWord(true);
         phoneNumberArea.setLineWrap(true);
 
-
+        // Adds the contact name and the phone number to the panel
         panel.add(new JLabel(name+"'s phone number : "));
         panel.add(phoneNumberArea, BorderLayout.CENTER);
 
         getButtonPanel(panel, factory, mainPage);
+        // Adds a button panel to the panel
 
         return panel;
     }
