@@ -95,7 +95,7 @@ public abstract class Element {
      * @param factory
      * @param mainPage
      */
-    protected void getButtonPanel(JPanel panel, ElementsFactory factory, MainPage mainPage) {
+    protected void getDeleteButtonPanel(JPanel panel, ElementsFactory factory, MainPage mainPage) {
         JPanel modificationPanel = new JPanel();
         modificationPanel.setLayout(new BoxLayout(modificationPanel, BoxLayout.X_AXIS));
 
