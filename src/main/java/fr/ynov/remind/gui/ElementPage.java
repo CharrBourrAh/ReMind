@@ -33,7 +33,8 @@ public class ElementPage {
 
     /**
      * Constructor for ElementPage.
-     * This method initializes the element page of the application
+     * This method initializes the element page of the application,
+     * that allows the user to create text or phone elements,
      * by setting up the different components to correctly show the stored elements.
      * It creates a tabbed pane to switch between the text and phone element creation panels.
      *
@@ -66,6 +67,7 @@ public class ElementPage {
         List<JSpinner> spinnersList = new java.util.ArrayList<>(List.of());
         List<JTextComponent> contentList = new java.util.ArrayList<>(List.of());
 
+        // Create a GridBagConstraints object for layout management
         GridBagConstraints gbc = new GridBagConstraints();
         JComboBox<Tags> tagsJComboBox = new JComboBox<>(Tags.values());
         basicCreationElements(gbc, formPanel, spinnersList, contentList, tagsJComboBox);
@@ -75,6 +77,7 @@ public class ElementPage {
         gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.weighty = 1.0;
+        // Adding a JTextArea to allow the user to enter a description
         JTextArea contentArea = new JTextArea(10, 30);
         JScrollPane scrollPane = new JScrollPane(contentArea);
         formPanel.add(scrollPane, gbc);
@@ -124,10 +127,11 @@ public class ElementPage {
     /**
      * Creates a panel with save and cancel buttons
      * that will be used in the element creation panel.
-     * @param mainPage object of MainPage
-     * @param parentPanel the parent panel to hide when saving or canceling
-     * @param spinnersList list of spinners for date and time
-     * @param contentList list of text components for title and description
+     *
+     * @param mainPage      object of MainPage
+     * @param parentPanel   the parent panel to hide when saving or canceling
+     * @param spinnersList  list of spinners for date and time
+     * @param contentList   list of text components for title and description
      * @param tagsJComboBox combo box for selecting tags
      * @return JPanel with save and cancel buttons
      */
@@ -144,7 +148,9 @@ public class ElementPage {
             Calendar calendar = Calendar.getInstance();
             calendar.set(spinnersList.getFirst().getValue().hashCode(), spinnersList.get(1).getValue().hashCode(), spinnersList.get(2).getValue().hashCode(), spinnersList.get(3).getValue().hashCode(), spinnersList.get(4).getValue().hashCode());
             Tags selectedTag = (Tags) tagsJComboBox.getSelectedItem();
-
+            // if the list contains 2 elements,
+            // it means that the user is creating a text element,
+            // otherwise it is a phone element
             if (contentList.size() == 2) {
                 try {
                     mainPage.elementsFactory.addElement(new TextElement(contentList.getFirst().getText(), calendar, contentList.get(1).getText(), selectedTag));
@@ -164,6 +170,7 @@ public class ElementPage {
                     "Information",
                     JOptionPane.INFORMATION_MESSAGE);
             try {
+                // Trying to save the elements to a JSON file
                 JsonHandler.saveDataToJSon(mainPage.elementsFactory);
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -184,10 +191,11 @@ public class ElementPage {
     /**
      * This method creates the main panel for the element creation
      * and adds the form panel and the button panel to it.
-     * @param mainPage object of MainPage
-     * @param formPanel the form panel containing the input fields
-     * @param spinnersList list of spinners for date and time
-     * @param contentList list of text components for title and description
+     *
+     * @param mainPage      object of MainPage
+     * @param formPanel     the form panel containing the input fields
+     * @param spinnersList  list of spinners for date and time
+     * @param contentList   list of text components for title and description
      * @param tagsJComboBox combo box for selecting tags
      * @return JPanel with the form and button panels
      */
@@ -203,10 +211,11 @@ public class ElementPage {
 
     /**
      * This method creates the basic elements of the form (title, ending date, tags)
-     * @param gbc GridBagConstraints for layout management
-     * @param formPanel the form panel to add elements to
-     * @param spinnersList list of spinners for date and time
-     * @param contentList list of text components for title and description
+     *
+     * @param gbc           GridBagConstraints for layout management
+     * @param formPanel     the form panel to add elements to
+     * @param spinnersList  list of spinners for date and time
+     * @param contentList   list of text components for title and description
      * @param tagsJComboBox combo box for selecting tags
      */
     private void basicCreationElements(GridBagConstraints gbc, JPanel formPanel, List<JSpinner> spinnersList, List<JTextComponent> contentList, JComboBox<Tags> tagsJComboBox) {
@@ -220,6 +229,7 @@ public class ElementPage {
 
         gbc.gridx = 1;
         gbc.weightx = 1.0;
+        // Adding a JTextArea to allow the user to enter a title
         JTextField titleField = new JTextField(20);
         formPanel.add(titleField, gbc);
         contentList.add(titleField);
@@ -233,6 +243,7 @@ public class ElementPage {
         gbc.weightx = 1.0;
         Calendar localDate = Calendar.getInstance();
         JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        // Creation of spinners for day, month, year, hour and minute
         JSpinner daySpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.DATE), 1, 31, 1));
         JSpinner monthSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.MONTH) + 1, 1, 12, 1));
         JSpinner yearSpinner = new JSpinner(new SpinnerNumberModel(localDate.get(Calendar.YEAR), 1900, 2100, 1));
@@ -258,6 +269,7 @@ public class ElementPage {
         spinnersList.add(minuteSpinner);
         formPanel.add(new JLabel("Tags:"), gbc);
         gbc.gridx = 1;
+        // Adding the tags in a JComboBox
         tagsJComboBox.setSelectedIndex(0);
         formPanel.add(tagsJComboBox, gbc);
 
