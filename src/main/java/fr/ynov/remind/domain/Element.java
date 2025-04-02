@@ -40,6 +40,13 @@ public abstract class Element {
     protected Tags tag;
     public abstract JPanel display(ElementsFactory factory, MainPage mainPage);
 
+
+    /**
+     * This method creates a delete button for the elements.
+     * @param factory
+     * @param mainPage
+     * @return
+     */
     protected JButton getDeleteJButton(ElementsFactory factory, MainPage mainPage) {
         JButton deleteButton = new JButton("Delete");
         deleteButton.addActionListener(_ -> {
@@ -52,6 +59,11 @@ public abstract class Element {
         });
         return deleteButton;
     }
+
+    /**
+     * This method is used to display the information of the element.
+     * @param panel
+     */
     protected void basicDisplayInfoPanel(JPanel panel) {
         panel.setBorder(BorderFactory.createTitledBorder(getName()+" - "+this.tag.toString()));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -72,7 +84,13 @@ public abstract class Element {
         panel.add(datePanel, BorderLayout.NORTH);
     }
 
-    protected void getModificationPanel(JPanel panel, ElementsFactory factory, MainPage mainPage) {
+    /**
+     * This method is used to create a button panel for the elements (shown in the bottom part with the delete button).
+     * @param panel
+     * @param factory
+     * @param mainPage
+     */
+    protected void getButtonPanel(JPanel panel, ElementsFactory factory, MainPage mainPage) {
         JPanel modificationPanel = new JPanel();
         modificationPanel.setLayout(new BoxLayout(modificationPanel, BoxLayout.X_AXIS));
 
