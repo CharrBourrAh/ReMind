@@ -66,15 +66,28 @@ public class ElementsFactory {
      * @return integer
      */
     private static int timeCalculation(int year, int month, int day) {
-        int result = year * 365;
-        for (int i= month; i>0; i--) {
+        int result = 0;
+        for (int j = 0; j < year; j++) {
+            if (j % 4 == 0) {
+                result += 366;
+            } else {
+                result += 365;
+            }
+        }
+        for (int i = month; i > 0; i--) {
             switch (i) {
                 case 1, 3, 5, 7, 8, 10, 12 -> result += 31;
                 case 4, 6, 9, 11 -> result += 30;
-                case 2 -> result += 28;
+                case 2 -> {
+                    if (year % 4 == 0) {
+                        result += 29;
+                    } else {
+                        result += 28;
+                    }
+                }
             }
         }
-        return result+day;
+        return result + day;
     }
 
     public static int remainingTime(int year1, int month1, int day1) {
