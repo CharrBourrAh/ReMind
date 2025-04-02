@@ -62,6 +62,7 @@ public class MainPage extends JFrame {
 
         cardLayout.show(mainPanel, "mainPage");
 
+        // Set the layout of the main panel to CardLayout
         add(mainPanel);
         setVisible(true);
         mainPagePanel.setVisible(true);
@@ -79,6 +80,8 @@ public class MainPage extends JFrame {
         elementsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         elementsPanel.setLayout(new BoxLayout(elementsPanel, BoxLayout.Y_AXIS));
         for (Element element : factory.getAllElements().values()) {
+            // Create a new panel for each element
+            // and set its minimum size to the preferred size of the element panel
             JPanel elementPanel = element.display(factory, this);
             elementsPanel.setMinimumSize(new Dimension(Integer.MAX_VALUE, elementPanel.getPreferredSize().height));
             elementsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -97,6 +100,7 @@ public class MainPage extends JFrame {
      */
     public void showMainPage() {
         mainPagePanel.remove(reminderScrollPanel);
+        // Recreate the scroll panel to refresh the list of elements
         displayElements(elementsFactory, mainPagePanel);
         cardLayout.show(mainPanel, "mainPage");
         mainPagePanel.revalidate();
