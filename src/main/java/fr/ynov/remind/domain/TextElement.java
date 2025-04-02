@@ -22,6 +22,15 @@ public class TextElement extends Element {
         this.description = description;
     }
 
+    /**
+     * This method displays the element in a JPanel.
+     * It creates a JTextArea to show the description and a JLabel to show the name.
+     * It also adds a delete button to remove the element from the factory and update the JSON file.
+     *
+     * @param factory The factory that creates and manages the different elements.
+     * @param mainPage The main page of the application.
+     * @return JPanel containing the displayed element.
+     */
     @Override
     public JPanel display(ElementsFactory factory, MainPage mainPage) {
 
