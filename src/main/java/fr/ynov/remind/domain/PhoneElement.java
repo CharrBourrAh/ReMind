@@ -52,8 +52,8 @@ public class PhoneElement extends Element{
         panel.add(new JLabel(name+"'s phone number : "));
         panel.add(phoneNumberArea, BorderLayout.CENTER);
 
-        getButtonPanel(panel, factory, mainPage);
         // Adds a button panel to the panel
+        getDeleteButtonPanel(panel, factory, mainPage);
 
         return panel;
     }
