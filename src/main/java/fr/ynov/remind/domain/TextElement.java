@@ -35,15 +35,19 @@ public class TextElement extends Element {
     public JPanel display(ElementsFactory factory, MainPage mainPage) {
 
         JPanel panel = new JPanel();
+        // Adds basic display info to the panel
         basicDisplayInfoPanel(panel);
 
+        // Creates a JTextArea to show the description
         JTextArea textArea = new JTextArea(description);
         textArea.setEditable(false);
         textArea.setWrapStyleWord(true);
         textArea.setLineWrap(true);
 
+        // Adds a scrollable area to the JTextArea
         JScrollPane scrollPane = new JScrollPane(textArea);
 
+        // Sets the preferred size of the scroll pane
         Dimension preferredSize = scrollPane.getPreferredSize();
         preferredSize.height = 150;
         scrollPane.setPreferredSize(preferredSize);
@@ -51,6 +55,7 @@ public class TextElement extends Element {
         panel.add(scrollPane, BorderLayout.CENTER);
 
         getButtonPanel(panel, factory, mainPage);
+        // Adds a delete button to the panel
         return panel;
     }
 }
