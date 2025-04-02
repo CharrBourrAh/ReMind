@@ -13,7 +13,7 @@ The application uses a factory pattern for element creation and JSON handling fo
 
 To run the application, you need to have:
 * Java JDK (11 or higher)
-* Google's json-simple-1.1.1.jar library (included in the project)
+* JSON.simple 1.1.1 library (included in the project) ([link to the library](https://code.google.com/archive/p/json-simple/))
 
 ## How to use the application
 ***
