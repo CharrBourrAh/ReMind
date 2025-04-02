@@ -66,13 +66,14 @@ public abstract class Element {
 
     /**
      * This method is used to display the information of the element.
-     * @param panel
+     * @param panel parent panel
      */
     protected void basicDisplayInfoPanel(JPanel panel) {
         panel.setBorder(BorderFactory.createTitledBorder(getName()+" - "+this.tag.toString()));
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         JPanel datePanel = new JPanel(new BorderLayout());
         int timeDifference = ElementsFactory.remainingTime(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
+        // Display the date
         JTextArea textArea2 = new JTextArea("Need to be completed before: " +
                 date.get(Calendar.DATE) + "/" +
                 date.get(Calendar.MONTH)  + "/" +
