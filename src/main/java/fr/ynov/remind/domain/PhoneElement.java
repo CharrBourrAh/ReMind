@@ -27,6 +27,15 @@ public class PhoneElement extends Element{
         this.contactName = contactName;
     }
 
+    /**
+     * This method displays the element in a JPanel.
+     * It creates a JTextArea to show the phone number and a JLabel to show the contact name.
+     * It also adds a delete button to remove the element from the factory and update the JSON file.
+     *
+     * @param factory The factory that creates and manages the different elements.
+     * @param mainPage The main page of the application.
+     * @return JPanel containing the displayed element.
+     */
     @Override
     public JPanel display(ElementsFactory factory, MainPage mainPage) {
         JPanel panel = new JPanel();
