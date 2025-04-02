@@ -63,6 +63,8 @@ public class JsonHandler {
         } catch (IOException | ParseException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -90,6 +92,7 @@ public class JsonHandler {
         } catch (IOException e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
+            throw new Exception(e);
         }
     }
 
