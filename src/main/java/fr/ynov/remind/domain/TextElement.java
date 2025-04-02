@@ -50,7 +50,7 @@ public class TextElement extends Element {
 
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        getModificationPanel(panel, factory, mainPage);
+        getButtonPanel(panel, factory, mainPage);
         return panel;
     }
 }
