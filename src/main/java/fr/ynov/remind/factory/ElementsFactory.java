@@ -14,8 +14,13 @@ public class ElementsFactory {
     private final TreeMap<Integer, Element> allElements = new TreeMap<Integer, Element>();
 
 
-    public void addElement(Element element) {
-        allElements.put(allElements.size(), element);
+    public void addElement(Element element) throws Exception {
+        try {
+            // adding elements to the TreeMap using the size of the TreeMap as the key
+            allElements.put(allElements.size(), element);
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
     }
 
     /**
