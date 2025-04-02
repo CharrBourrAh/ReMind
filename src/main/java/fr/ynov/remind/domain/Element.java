@@ -45,7 +45,7 @@ public abstract class Element {
      * This method creates a delete button for the elements.
      * @param factory
      * @param mainPage
-     * @return
+     * @return JButton deleteButton
      */
     protected JButton getDeleteJButton(ElementsFactory factory, MainPage mainPage) {
         JButton deleteButton = new JButton("Delete");
